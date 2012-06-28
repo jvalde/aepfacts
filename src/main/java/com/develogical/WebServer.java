@@ -41,6 +41,7 @@ public class WebServer {
             try {
 
                 String query = req.getParameter("q");
+                System.out.println("Query String ------> : " + query);
                 new ApiResponse(new QueryProcessor().process(query)).writeTo(resp);
 
             } catch (Exception e) {
