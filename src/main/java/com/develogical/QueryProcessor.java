@@ -81,6 +81,9 @@ public class QueryProcessor {
         if (query.contains("what currency did spain")) {
             return "Peseta";
         }
+        if (query.contains("who played James Bond")) {
+            return "Sean Connery";
+        }
 
         //"dc0d00b0: which of the following numbers is both a square and a cube: 55, 1"
         return "";
@@ -92,6 +95,16 @@ public class QueryProcessor {
                 return false;
         }
         return true;
+    }
+
+    public static int fibonacci(int n){
+        int a=0,b=1;
+
+        for (int i=0;i<n;i++){
+            System.out.println(a);
+            a=a+b;
+            b=a-b;
+        }
     }
 
 }
