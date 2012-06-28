@@ -33,10 +33,17 @@ public class QueryProcessorTest {
     }
 
     @Test
-    public void sumRequest() {
-        String result = new QueryProcessor().process("what is 10 plus 17");
+     public void sumRequest() {
+        String result = new QueryProcessor().process("32b4e260: what is 10 plus 17");
         assertNotNull(result);
         assertThat(result, is("27"));
+    }
+
+    @Test
+    public void largestRequest() {
+        String result = new QueryProcessor().process("04d115D0: which of the following numbers is the largest: 6, 8, 5, 3, 853");
+        assertNotNull(result);
+        assertThat(result, is("853"));
     }
 }
 
