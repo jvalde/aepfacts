@@ -1,6 +1,10 @@
 package com.develogical;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class QueryProcessor {
 
@@ -11,49 +15,51 @@ public class QueryProcessor {
         if (query.contains("what is your name")) {
             return "Lean Fighter";
         }
+        if (query.contains("what colour is a banana")) {
+            return "yellow";
+        }
+        if (query.contains("which city is the Eiffel tower in")) {
+            return "Paris";
+        }
+        if (query.contains("what currency did spain")) {
+            return "Peseta";
+        }
+        if (query.contains("who played James Bond")) {
+            return "Sean Connery";
+        }
         if (query.contains("plus")) {
-            query = query.split(":")[1].replaceAll(" what is ", "");
-            query = query.replaceAll("plus ", "");
-            String[] numbersString = query.split(" ");
             int total = 0;
-            for(String number : numbersString){
+            for(String number : getParameters(cleanKey(query))){
                 total = total + Integer.parseInt(number);
             }
             return String.valueOf(total);
         }
+        List <String> parameters;
         if (query.contains("minus")) {
-            query = query.split(":")[1].replaceAll(" what is ", "");
-            query = query.replaceAll("minus ", "");
-            String[] numbersString = query.split(" ");
-            int total = Integer.parseInt(numbersString[0]) - Integer.parseInt(numbersString[1]);
+            parameters = getParameters(cleanKey(query));
+            int total = Integer.parseInt(parameters.get(0)) - Integer.parseInt(parameters.get(1));
             return String.valueOf(total);
         }
         if (query.contains("to the power of")) {
-            query = query.split(":")[1].replaceAll(" what is ", "");
-            query = query.replaceAll("to the power of ", "");
-            String[] numbersString = query.split(" ");
-            double total = Math.pow(new Double(numbersString[0]), new Double(numbersString[1]));
+            parameters = getParameters(cleanKey(query));
+            double total = Math.pow(new Double(parameters.get(0)), new Double(parameters.get(1)));
 
             return String.valueOf(new BigDecimal(total));
         }
         if (query.contains("multiplied")) {
-            query = query.split(":")[1].replaceAll(" what is ", "");
-            query = query.replaceAll("multiplied by ", "");
-            String[] numbersString = query.split(" ");
-            int total = Integer.parseInt(numbersString[0]) * Integer.parseInt(numbersString[1]);
+            parameters = getParameters(cleanKey(query));
+            int total = Integer.parseInt(parameters.get(0)) * Integer.parseInt(parameters.get(1));
             return String.valueOf(total);
         }
         if (query.contains("Fibonacci")) {
-            query = query.split(":")[1].replaceAll(" what is the", "");
-            query = query.replaceAll("th number in the Fibonacci sequence", "");
-            query = query.replaceAll(" ", "");
-            int total = fibonacci(Integer.parseInt(query));
+            parameters = getParameters(cleanKey(query));
+            int total = fibonacci(Integer.parseInt(parameters.get(0)));
             return String.valueOf(total);
         }
         if (query.contains("largest")) {
-            String[] numbersString = query.split(":")[2].replaceAll(" ","").split(",");
+            parameters = getParameters(cleanKey(query));
             int biggestNumber = 0;
-            for(String number : numbersString){
+            for(String number : parameters){
                 if(Integer.parseInt(number) > biggestNumber){
                     biggestNumber = Integer.parseInt(number);
                 }
@@ -62,10 +68,10 @@ public class QueryProcessor {
             return String.valueOf(biggestNumber);
         }
         if (query.contains("prime")) {
-            String[] numbersString = query.split(":")[2].replaceAll(" ","").split(",");
+            parameters = getParameters(cleanKey(query));
 
             String primeNumbers = "";
-            for(String number : numbersString){
+            for(String number : parameters){
                 if(isPrime(Integer.parseInt(number))){
                     if(primeNumbers.equalsIgnoreCase("")){
                         primeNumbers = number;
@@ -89,29 +95,24 @@ public class QueryProcessor {
 
             return String.valueOf(primeNumer);
         }
-        if (query.contains("what colour is a banana")) {
-            return "yellow";
-        }
-        if (query.contains("which city is the Eiffel tower in")) {
-            return "Paris";
-        }
-        if (query.contains("what currency did spain")) {
-            return "Peseta";
-        }
-        if (query.contains("who played James Bond")) {
-            return "Sean Connery";
-        }
-
-        //"dc0d00b0: which of the following numbers is both a square and a cube: 55, 1"
         return "";
     }
 
-    private boolean isPrime(int n) {
-        for(int i=2;i<n;i++) {
-            if(n%i==0)
-                return false;
+    private boolean isPrime(int number) {
+        boolean isPrime = false;
+        int i;
+        for (i=2; i < number ;i++ ){
+            int n = number%i;
+            if (n==0){
+                isPrime = false;
+                break;
+            }
         }
-        return true;
+        if(i == number){
+            isPrime = true;
+        }
+
+        return isPrime;
     }
 
     public static int fibonacci(int n){
@@ -122,6 +123,24 @@ public class QueryProcessor {
             b=a-b;
         }
         return a;
+    }
+    
+    private String cleanKey(String queryString){
+        return queryString.substring(queryString.indexOf(':'), queryString.length());
+    }
+    
+    private List<String> getParameters(String queryString){
+        Pattern p = Pattern.compile("\\d+");
+        Matcher m = p.matcher(queryString);
+        List<String> parameters = new ArrayList<String>();
+
+        while(m.find()){
+
+            parameters.add(m.group());
+
+        }
+        
+        return parameters;
     }
 
 }

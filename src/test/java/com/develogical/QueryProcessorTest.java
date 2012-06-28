@@ -2,12 +2,9 @@ package com.develogical;
 
 import org.junit.Test;
 
-import java.util.Map;
-
 import static junit.framework.Assert.assertNotNull;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
-import static org.junit.matchers.JUnitMatchers.containsString;
 
 public class QueryProcessorTest {
 
@@ -78,9 +75,6 @@ public class QueryProcessorTest {
     public void primeRequest() {
         String result = new QueryProcessor().process("d63ff100: which of the following numbers are primes: 347, 31, 61, 511");
         assertNotNull(result);
-        //assertThat(result, is("419"));
+        assertThat(result, is("347, 31, 61"));
     }
 }
-
-
-
