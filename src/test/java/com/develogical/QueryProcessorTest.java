@@ -71,7 +71,7 @@ public class QueryProcessorTest {
     public void powerRequest() {
         String result = new QueryProcessor().process("94c8ce10: what is 18 to the power of 15");
         assertNotNull(result);
-        assertThat(result, is("6.7466406164774584E18"));
+        assertThat(result, is("6746640616477458432"));
     }
 
     @Test

@@ -1,5 +1,7 @@
 package com.develogical;
 
+import java.math.BigDecimal;
+
 public class QueryProcessor {
 
     public String process(String query) {
@@ -31,7 +33,8 @@ public class QueryProcessor {
             query = query.replaceAll("to the power of ", "");
             String[] numbersString = query.split(" ");
             double total = Math.pow(new Double(numbersString[0]), new Double(numbersString[1]));
-            return String.valueOf(total);
+
+            return String.valueOf(new BigDecimal(total));
         }
         if (query.contains("multiplied")) {
             query = query.split(":")[1].replaceAll(" what is ", "");
