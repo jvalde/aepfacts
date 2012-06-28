@@ -37,16 +37,8 @@ public class QueryProcessor {
 
             return String.valueOf(biggestNumber);
         }
-        if (query.contains("square")) {
-            String[] numbersString = query.split(":")[2].replaceAll(" ","").split(",");
-            int biggestNumber = 0;
-            for(String number : numbersString){
-                if(Integer.parseInt(number) > 0){
-                    biggestNumber = Integer.parseInt(number);
-                }
-            }
-
-            return String.valueOf(biggestNumber);
+        if (query.contains("what colour is a banana")) {
+            return "yellow";
         }
         //"dc0d00b0: which of the following numbers is both a square and a cube: 55, 1"
         return "";
