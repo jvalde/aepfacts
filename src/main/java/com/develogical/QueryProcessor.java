@@ -48,11 +48,25 @@ public class QueryProcessor {
 
             return String.valueOf(primeNumer);
         }
+        if (query.contains("square and a cube")) {
+            String[] numbersString = query.split(":")[2].replaceAll(" ","").split(",");
+            int primeNumer = 0;
+            for(String number : numbersString){
+                if(isPrime(Integer.parseInt(number))){
+                    primeNumer = Integer.parseInt(number);
+                }
+            }
+
+            return String.valueOf(primeNumer);
+        }
         if (query.contains("what colour is a banana")) {
             return "yellow";
         }
         if (query.contains("which city is the Eiffel tower in")) {
             return "Paris";
+        }
+        if (query.contains("what currency did spain")) {
+            return "Peseta";
         }
 
         //"dc0d00b0: which of the following numbers is both a square and a cube: 55, 1"
