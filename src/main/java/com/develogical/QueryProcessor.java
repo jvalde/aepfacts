@@ -9,8 +9,15 @@ public class QueryProcessor {
         if (query.contains("what is your name")) {
             return "Lean Fighter";
         }
-        if (query.contains("what is 10 plus 17")) {
-            return "27";
+        if (query.contains("plus")) {
+            query = query.replaceAll("what is ", "");
+            query = query.replaceAll("plus ", "");
+            String[] numbersString = query.split(" ");
+            int total = 0;
+            for(String number : numbersString){
+                total = total + Integer.parseInt(number);
+            }
+            return String.valueOf(total);
         }
         return "";
     }
