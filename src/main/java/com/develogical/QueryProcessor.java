@@ -26,6 +26,13 @@ public class QueryProcessor {
             int total = Integer.parseInt(numbersString[0]) - Integer.parseInt(numbersString[1]);
             return String.valueOf(total);
         }
+        /*if (query.contains("power")) {
+            query = query.split(":")[1].replaceAll(" what is ", "");
+            query = query.replaceAll("minus ", "");
+            String[] numbersString = query.split(" ");
+            int total = Math.exp() Integer.parseInt(numbersString[0]) - Integer.parseInt(numbersString[1]);
+            return String.valueOf(total);
+        }     */
         if (query.contains("multiplied")) {
             query = query.split(":")[1].replaceAll(" what is ", "");
             query = query.replaceAll("multiplied by ", "");
@@ -37,7 +44,7 @@ public class QueryProcessor {
             query = query.split(":")[1].replaceAll(" what is the", "");
             query = query.replaceAll("th number in the Fibonacci sequence", "");
             query = query.replaceAll(" ", "");
-            int total = fibonacci(Integer.parseInt(query) - 1);
+            int total = fibonacci(Integer.parseInt(query));
             return String.valueOf(total);
         }
         if (query.contains("largest")) {
