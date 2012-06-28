@@ -61,6 +61,13 @@ public class QueryProcessorTest {
     }
 
     @Test
+    public void fibonacciRequest() {
+        String result = new QueryProcessor().process("18ee1bd0: what is the 6th number in the Fibonacci sequence");
+        assertNotNull(result);
+        assertThat(result, is("5"));
+    }
+
+    @Test
     public void primeRequest() {
         String result = new QueryProcessor().process("d63ff100: which of the following numbers are primes: 347, 31, 61, 511");
         assertNotNull(result);

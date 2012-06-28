@@ -33,6 +33,13 @@ public class QueryProcessor {
             int total = Integer.parseInt(numbersString[0]) * Integer.parseInt(numbersString[1]);
             return String.valueOf(total);
         }
+        if (query.contains("Fibonacci")) {
+            query = query.split(":")[1].replaceAll(" what is the", "");
+            query = query.replaceAll("th number in the Fibonacci sequence", "");
+            query = query.replaceAll(" ", "");
+            int total = fibonacci(Integer.parseInt(query) - 1);
+            return String.valueOf(total);
+        }
         if (query.contains("largest")) {
             String[] numbersString = query.split(":")[2].replaceAll(" ","").split(",");
             int biggestNumber = 0;
@@ -101,10 +108,10 @@ public class QueryProcessor {
         int a=0,b=1;
 
         for (int i=0;i<n;i++){
-            System.out.println(a);
             a=a+b;
             b=a-b;
         }
+        return a;
     }
 
 }
