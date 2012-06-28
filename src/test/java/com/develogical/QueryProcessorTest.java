@@ -68,6 +68,13 @@ public class QueryProcessorTest {
     }
 
     @Test
+    public void powerRequest() {
+        String result = new QueryProcessor().process("94c8ce10: what is 18 to the power of 15");
+        assertNotNull(result);
+        assertThat(result, is("6.7466406164774584E18"));
+    }
+
+    @Test
     public void primeRequest() {
         String result = new QueryProcessor().process("d63ff100: which of the following numbers are primes: 347, 31, 61, 511");
         assertNotNull(result);

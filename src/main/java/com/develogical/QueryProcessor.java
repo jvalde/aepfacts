@@ -26,13 +26,13 @@ public class QueryProcessor {
             int total = Integer.parseInt(numbersString[0]) - Integer.parseInt(numbersString[1]);
             return String.valueOf(total);
         }
-        /*if (query.contains("power")) {
+        if (query.contains("to the power of")) {
             query = query.split(":")[1].replaceAll(" what is ", "");
-            query = query.replaceAll("minus ", "");
+            query = query.replaceAll("to the power of ", "");
             String[] numbersString = query.split(" ");
-            int total = Math.exp() Integer.parseInt(numbersString[0]) - Integer.parseInt(numbersString[1]);
+            double total = Math.pow(new Double(numbersString[0]), new Double(numbersString[1]));
             return String.valueOf(total);
-        }     */
+        }
         if (query.contains("multiplied")) {
             query = query.split(":")[1].replaceAll(" what is ", "");
             query = query.replaceAll("multiplied by ", "");
