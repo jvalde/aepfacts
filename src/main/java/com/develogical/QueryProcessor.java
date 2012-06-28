@@ -40,6 +40,10 @@ public class QueryProcessor {
         if (query.contains("what colour is a banana")) {
             return "yellow";
         }
+        if (query.contains("which city is the Eiffel tower in")) {
+            return "Paris";
+        }
+
         //"dc0d00b0: which of the following numbers is both a square and a cube: 55, 1"
         return "";
     }
