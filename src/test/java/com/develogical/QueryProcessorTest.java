@@ -52,6 +52,13 @@ public class QueryProcessorTest {
         assertNotNull(result);
         assertThat(result, is("22"));
     }
+
+    @Test
+    public void primeRequest() {
+        String result = new QueryProcessor().process("cc78c910: which of the following numbers are primes: 419, 470");
+        assertNotNull(result);
+        assertThat(result, is("419"));
+    }
 }
 
 

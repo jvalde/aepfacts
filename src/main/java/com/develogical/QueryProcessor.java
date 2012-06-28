@@ -37,6 +37,17 @@ public class QueryProcessor {
 
             return String.valueOf(biggestNumber);
         }
+        if (query.contains("prime")) {
+            String[] numbersString = query.split(":")[2].replaceAll(" ","").split(",");
+            int primeNumer = 0;
+            for(String number : numbersString){
+                if(isPrime(Integer.parseInt(number))){
+                    primeNumer = Integer.parseInt(number);
+                }
+            }
+
+            return String.valueOf(primeNumer);
+        }
         if (query.contains("what colour is a banana")) {
             return "yellow";
         }
@@ -46,6 +57,14 @@ public class QueryProcessor {
 
         //"dc0d00b0: which of the following numbers is both a square and a cube: 55, 1"
         return "";
+    }
+
+    private boolean isPrime(int n) {
+        for(int i=2;i<n;i++) {
+            if(n%i==0)
+                return false;
+        }
+        return true;
     }
 
 }
