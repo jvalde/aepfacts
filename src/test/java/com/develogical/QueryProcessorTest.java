@@ -41,9 +41,9 @@ public class QueryProcessorTest {
 
     @Test
     public void largestRequest() {
-        String result = new QueryProcessor().process("04d115D0: which of the following numbers is the largest: 6, 8, 5, 3, 853");
+        String result = new QueryProcessor().process("04d115D0: which of the following numbers is the largest: 663, 78, 675, 94");
         assertNotNull(result);
-        assertThat(result, is("853"));
+        assertThat(result, is("675"));
     }
 
     @Test
