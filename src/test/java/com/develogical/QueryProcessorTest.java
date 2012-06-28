@@ -31,6 +31,13 @@ public class QueryProcessorTest {
         assertNotNull(result);
         assertThat(result, is(""));
     }
+
+    @Test
+    public void sumRequest() {
+        String result = new QueryProcessor().process("what is 10 plus 17");
+        assertNotNull(result);
+        assertThat(result, is("27"));
+    }
 }
 
 
