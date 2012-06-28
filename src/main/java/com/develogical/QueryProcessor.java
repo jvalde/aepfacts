@@ -39,14 +39,20 @@ public class QueryProcessor {
         }
         if (query.contains("prime")) {
             String[] numbersString = query.split(":")[2].replaceAll(" ","").split(",");
-            int primeNumer = 0;
+
+            String primeNumbers = "";
             for(String number : numbersString){
                 if(isPrime(Integer.parseInt(number))){
-                    primeNumer = Integer.parseInt(number);
+                    if(primeNumbers.equalsIgnoreCase("")){
+                        primeNumbers = number;
+                    }else{
+                        primeNumbers = primeNumbers + ", " + number;
+                    }
+
                 }
             }
 
-            return String.valueOf(primeNumer);
+            return primeNumbers;
         }
         if (query.contains("square and a cube")) {
             String[] numbersString = query.split(":")[2].replaceAll(" ","").split(",");
