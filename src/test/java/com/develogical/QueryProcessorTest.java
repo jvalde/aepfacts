@@ -45,6 +45,13 @@ public class QueryProcessorTest {
         assertNotNull(result);
         assertThat(result, is("853"));
     }
+
+    @Test
+    public void multiplyRequest() {
+        String result = new QueryProcessor().process("b81b7400: what is 11 multiplied by 2");
+        assertNotNull(result);
+        assertThat(result, is("22"));
+    }
 }
 
 

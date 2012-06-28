@@ -19,6 +19,13 @@ public class QueryProcessor {
             }
             return String.valueOf(total);
         }
+        if (query.contains("multiplied")) {
+            query = query.split(":")[1].replaceAll(" what is ", "");
+            query = query.replaceAll("multiplied by ", "");
+            String[] numbersString = query.split(" ");
+            int total = Integer.parseInt(numbersString[0]) * Integer.parseInt(numbersString[1]);
+            return String.valueOf(total);
+        }
         if (query.contains("largest")) {
             String[] numbersString = query.split(":")[2].replaceAll(" ","").split(",");
             int biggestNumber = 0;
