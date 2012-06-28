@@ -6,6 +6,9 @@ public class QueryProcessor {
         if (query.contains("hi")) {
             return "hello";
         }
+        if (query.contains("what is your name")) {
+            return "Lean Fighter";
+        }
         return "";
     }
 
