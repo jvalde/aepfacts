@@ -2,6 +2,8 @@ package com.develogical;
 
 import org.junit.Test;
 
+import java.util.List;
+
 import static junit.framework.Assert.assertNotNull;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
@@ -77,4 +79,36 @@ public class QueryProcessorTest {
         assertNotNull(result);
         assertThat(result, is("347, 31, 61"));
     }
+
+    @Test
+    public void hasTwoFunctionsReturnFalseRequest() {
+        boolean result = new QueryProcessor().hasTwoOperations("d63ff100: which of the following numbers are primes: 347, 31, 61, 511");
+        assertNotNull(result);
+        assertThat(result, is(false));
+    }
+
+    @Test
+    public void hasTwoFunctionsReturnTrueRequest() {
+        boolean result = new QueryProcessor().hasTwoOperations("d63ff100: what is 23 plus 45 plus 34");
+        assertNotNull(result);
+        assertThat(result, is(true));
+    }
+
+    @Test
+    public void getOperationsRequest() {
+        List<String> result = new QueryProcessor().getOperations("d63ff100: what is 23 plus 45 plus 34");
+        assertNotNull(result);
+        assertThat(result.get(0), is("plus"));
+        assertThat(result.get(1), is("plus"));
+    }
+
+    @Test
+    public void getOperationsPlusMultipliedRequest() {
+        List<String> result = new QueryProcessor().getOperations("d63ff100: what is 23 plus 45 multiplied 34");
+        assertNotNull(result);
+        assertThat(result.get(0), is("plus"));
+        assertThat(result.get(1), is("multiplied"));
+    }
+
+
 }

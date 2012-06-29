@@ -143,4 +143,29 @@ public class QueryProcessor {
         return parameters;
     }
 
+    public boolean hasTwoOperations(String queryString){
+        Pattern p = Pattern.compile("((\\bplus\\b|\\bminus\\b|\\bmultiplied\\b).*?){2}");
+        Matcher m = p.matcher(queryString);
+
+        return m.find();
+    }
+
+    public List<String> getOperations(String queryString){
+        Pattern p = Pattern.compile("((\\bplus\\b|\\bminus\\b|\\bmultiplied\\b).*?){2}");
+        Matcher m = p.matcher(queryString);
+
+        List<String> parameters = new ArrayList<String>();
+
+        while(m.find()){
+
+            parameters.add(m.group(1));
+            parameters.add(m.group(2));
+
+        }
+
+        return parameters;
+    }
+
+
+
 }
